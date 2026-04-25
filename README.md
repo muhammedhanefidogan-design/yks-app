@@ -10,6 +10,6 @@ Selçuk Üniversitesi Bilgisayar Mühendisliği öğrencisi olarak geliştirdiğ
 * **Klasör:** `/KAZA PROJESİ`
 
 ### 2. 👗 Hüda Doğan Atelier Web Sitesi
-* **Açıklama:** Kurumsal bir moda markası için tasarlanan modern, minimalist ve kullanıcı dostu bir web sitesi çalışmasıdır.
+* **Açıklama:** Özel dikim kıyafetler üreten küçük bir moda atölyesi için sıfırdan tasarladığım, ürün portfolyosunu öne çıkaran web sitesi
 * **Teknolojiler:** HTML5, CSS3, JavaScript.
 * **Klasör:** /huda-dogan-atelier-web
