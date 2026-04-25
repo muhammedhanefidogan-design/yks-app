@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hüda Doğan | Haute Couture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&family=Tenor+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- TEMEL AYARLAR --- */
+        :root {
+            --black: #121212;
+            --white: #ffffff;
+            --gray: #777;
+            --light-gray: #f4f4f4;
+            --gold: #c5a059;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Tenor Sans', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Bodoni Moda', serif; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            border-bottom: 1px solid #eee;
+            background: white;
+            position: fixed; 
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            gap: 40px;
+        }
+
+        .brand-logo img { height: 40px; width: auto; cursor: pointer; }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 30px; 
+            margin-left: auto;
+        }
+
+        /* MENÜ LİNKLERİ GÜÇLENDİRİLDİ */
+        nav ul { display: flex; gap: 20px; list-style: none; }
+        nav a { 
+            text-decoration: none; color: var(--black); font-size: 0.85rem; /* Büyütüldü */
+            text-transform: uppercase; font-weight: 700; /* Kalınlaştırıldı */
+            transition: 0.3s; cursor: pointer;
+        }
+        nav a:hover { color: var(--gold); /* Altın rengi vurgu */ }
+        
+        .header-btn {
+            background: var(--black); color: white; padding: 10px 20px; 
+            text-decoration: none; font-size: 0.8rem; text-transform: uppercase; cursor: pointer;
+        }
+
+        /* --- SAYFA YAPISI --- */
+        .page-view {
+            display: none;
+            padding-top: 80px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        #view-home { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- HERO --- */
+        .hero {
+            display: flex;
+            height: calc(100vh - 80px);
+            background-color: var(--black);
+            color: var(--white);
+            padding-top: 80px; 
+        }
+        .hero-text { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 0 80px; }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; }
+        .hero-text p { color: #ccc; letter-spacing: 2px; margin-bottom: 40px; }
+        .btn-white {
+            background: var(--white); color: var(--black); padding: 15px 40px;
+            border: none; text-transform: uppercase; font-weight: bold; cursor: pointer;
+            width: fit-content; transition: 0.3s; display: inline-block;
+        }
+        .btn-white:hover { background: #ddd; }
+        
+        .hero-img { flex: 1.2; position: relative; background-color: #222; }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- HİKAYE --- */
+        .split-section { display: flex; padding: 100px 50px; gap: 60px; max-width: 1400px; margin: 0 auto; align-items: center; }
+        .left-content { flex: 1; text-align: center; display:flex; justify-content:center;}
+        .big-logo { width: 80%; max-width: 350px; height: auto; object-fit: contain; }
+        .right-content { flex: 2; }
+        .about-desc h3 { font-size: 2rem; margin-bottom: 20px; }
+        .about-desc p { line-height: 1.8; color: var(--gray); margin-bottom: 20px; }
+        .feature-img { height: 400px; width: 100%; }
+        .feature-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 2px; }
+
+        /* --- KOLEKSİYON --- */
+        .collection-container { padding: 50px; background-color: var(--light-gray); min-height: 100vh; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .card { background: white; padding-bottom: 20px; transition: 0.3s; }
+        .card-img { height: 450px; overflow: hidden; background: #ddd; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card:hover img { transform: scale(1.07); } /* ZOOM EFEKTİ DÜZELTİLDİ */
+        .card-info { padding: 20px 15px 0; text-align: center; }
+        .card-info h4 { font-size: 1rem; margin-bottom: 5px; }
+        .card-info span { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; }
+
+        /* --- BLOG --- */
+        .blog-container-main { padding: 50px; max-width: 1200px; margin: 0 auto; }
+        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .blog-item { cursor: pointer; transition: 0.3s; }
+        .blog-item:hover { opacity: 0.8; transform: translateY(-5px); }
+        .blog-item img { width: 100%; height: 300px; object-fit: cover; margin-bottom: 20px; }
+        .blog-item h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .blog-item p { color: var(--gray); line-height: 1.6; font-size: 0.9rem; }
+        .read-more { color:var(--black); font-weight:bold; font-size:0.8rem; border-bottom:1px solid black; }
+
+        /* --- BLOG DETAY --- */
+        .blog-detail-content { max-width: 800px; margin: 0 auto; padding: 50px 20px; }
+        .blog-detail-content img { width: 100%; height: 400px; object-fit: cover; margin-bottom: 30px; }
+        .blog-detail-content h1 { font-size: 2.5rem; margin-bottom: 20px; }
+        .blog-detail-content p { font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 20px; }
+        .blog-detail-content ul { margin-bottom:30px; }
+        .blog-detail-content li { margin-bottom:10px; color:#555; }
+        .quote-box { background:#f9f9f9; padding:20px; border-left:4px solid var(--gold); margin: 30px 0; font-style: italic;}
+
+        /* --- İLETİŞİM --- */
+        .contact-wrapper {
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            height: calc(100vh - 80px); background: var(--black); color: white; text-align: center;
+        }
+        .contact-wrapper h2 { font-size: 4rem; color: var(--gold); margin-bottom: 20px; }
+        .contact-wrapper p { font-size: 1.2rem; color: #aaa; max-width: 600px; margin-bottom: 40px; }
+        .social-link { color: white; text-decoration: none; margin: 0 20px; transition: 0.3s; display: inline-block; }
+        .social-link i { font-size: 3rem; }
+        .social-link:hover { color: var(--gold); transform: scale(1.1); }
+        .contact-footer { margin-top: 50px; font-size: 0.8rem; opacity: 0.5; }
+
+        /* MOBİL */
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column; height: auto; }
+            .hero-text { padding: 60px 20px; }
+            .hero-img { height: 400px; }
+            .split-section { flex-direction: column; padding: 50px 20px; }
+            .grid { grid-template-columns: 1fr; }
+            nav { display: none; } 
+            header { padding: 15px 20px; }
+            .grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-wrapper h2 { font-size: 2.5rem; }
+        }
+        
+        img[alt]:after { display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-logo" onclick="switchPage('view-home')">
+            <img src="logo.jpg" alt="HD Logo">
+        </div>
+        <div class="nav-wrapper">
+            <nav>
+                <ul>
+                    <li><a onclick="switchPage('view-home')">Hakkımızda</a></li>
+                    <li><a onclick="switchPage('view-collection')">Koleksiyon</a></li>
+                    <li><a onclick="switchPage('view-blog')">Stil Rehberi</a></li>
+                </ul>
+            </nav>
+            <a onclick="switchPage('view-contact')" class="header-btn">Randevu Al</a>
+        </div>
+    </header>
+
+    <div id="main-site">
+
+        <div id="view-home" class="page-view">
+            <section class="hero">
+                <div class="hero-text">
+                    <p>ÖZEL DİKİM ATÖLYESİ</p>
+                    <h1>STİLİNİZE ÖZEL<br>DOKUNUŞLAR</h1>
+                    <a onclick="switchPage('view-collection')" class="btn-white">KOLEKSİYONU İNCELE</a>
+                </div>
+                <div class="hero-img">
+                    <img src="kapak.jpg" alt="Kapak Görseli">
+                </div>
+            </section>
+
+            <section class="split-section">
+                <div class="left-content">
+                    <img src="logo.jpg" class="big-logo" alt="Hüda Doğan Logo">
+                </div>
+                <div class="right-content">
+                    <div class="about-desc">
+                        <h3>ÖZEL DİKİMİN ZARAFETİ</h3>
+                        <p>Yirmi yıllık tecrübe, modern çizgiler ve geleneksel el işçiliği. Hüda Doğan Atölyesi'nde her tasarım, sizin vücut ölçülerinize göre şekillenir.</p>
+                        <p>Seri üretimin ötesinde, tamamen size özel bir deneyim.</p>
+                    </div>
+                    <div class="feature-img">
+                        <img src="5.jpg" alt="Atölye Detayı" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1598300056393-4aac492f4344?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-collection" class="page-view">
+            <div class="collection-container">
+                <div class="section-header">
+                    <h2>YENİ KOLEKSİYON</h2>
+                    <p style="color:#777;">Sezonun öne çıkan parçaları</p>
+                </div>
+                <div class="grid">
+                    <div class="card"><div class="card-img"><img src="1.jpeg" alt="Tasarım 1" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500';"></div><div class="card-info"><h4>ÖZEL TASARIM</h4><span>Haute Couture</span></div></div>
+                    <div class="card"><div class="card-img"><img src="2.jpeg" alt="Tasarım 2" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500';"></div><div class="card-info"><h4>MODERN KESİM</h4><span>Günlük Şıklık</span></div></div>
+                    <div class="card"><div class="card-img"><img src="3.jpeg" alt="Tasarım 3" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=500';"></div><div class="card-info"><h4>ZARİF DETAYLAR</h4><span>İşlemeli</span></div></div>
+                    <div class="card"><div class="card-img"><img src="4.jpeg" alt="Tasarım 4" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1532453282215-ff99479b18dc?w=500';"></div><div class="card-info"><h4>GÜNLÜK KOLEKSİYONU</h4><span>Özel Dikim</span></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-blog" class="page-view">
+            <div class="blog-container-main">
+                <h2 style="text-align:center; margin-bottom:50px; font-size:2.5rem;">STİL REHBERİ</h2>
+                <div class="blog-grid">
+                    <div class="blog-item" onclick="switchPage('view-blog-1')">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Kumaş">
+                        <h3>Kumaş Seçiminin Önemi</h3>
+                        <p>Doğru kumaş, tasarımın ruhunu yansıtır. İpek, saten ve dantel kullanımında dikkat edilmesi gerekenler.</p>
+                        <span class="read-more">İNCELE</span>
+                    </div>
+
+                    <div class="blog-item" onclick="switchPage('view-blog-2')">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Vücut Tipi">
+                        <h3>Vücut Tipine Göre Giyim</h3>
+                        <p>Hangi kesim sizin için daha uygun? A kesim, balık model veya düz kesim elbiseler.</p>
+                        <span class="read-more">İNCELE</span>
+                    </div>
+
+                    <div class="blog-item" onclick="switchPage('view-blog-3')">
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Trendler">
+                        <h3>2025 Moda Trendleri</h3>
+                        <p>Bu sezonun öne çıkan renkleri ve kesimleri. Atölyemizde uyguladığımız modern dokunuşlar.</p>
+                        <span class="read-more">İNCELE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-blog-1" class="page-view">
+            <div class="blog-detail-content">
+                <img src="https://images.unsplash.com/photo-1550614000-4b9519e02a56?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Kumaş">
+                <h1>Kumaş Seçimi: Tasarımın Gizli Kahramanı</h1>
+                <p>Özel dikim (Haute Couture) dünyasında, tasarım süreci çizimle başlar ama ruhunu kumaşla bulur. Mükemmel bir kalıp, yanlış bir kumaş seçimiyle tüm büyüsünü kaybedebilirken; doğru kumaş, en sade tasarımı bile bir sanat eserine dönüştürebilir.</p>
+                <div class="quote-box">"Bir elbiseyi gösteren modelidir, ama onu yaşatan kumaşıdır." — Hüda Doğan</div>
+                <h3>1. Doğallığın Lüksü: İpek ve Şifon</h3>
+                <p>Atölyemizde önceliğimiz her zaman doğal liflerdir. İpek Şifon uçuş uçuş bir hava yaratırken, İpek Saten vücudu sarar.</p>
+                <h3>2. Yapısal Duruş: Krep ve Tafta</h3>
+                <p>Net hatlara sahip bir elbise istiyorsanız, krep kumaşlar vazgeçilmezdir. Vücut kusurlarını örten yapısı ve dökümlü duruşuyla mükemmel sonuçlar verir.</p>
+            </div>
+        </div>
+
+        <div id="view-blog-2" class="page-view">
+            <div class="blog-detail-content">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Vücut">
+                <h1>Kendinizi Tanıyın: Vücut Tipine Göre Giyim Sanatı</h1>
+                <p>Her beden eşsizdir ve her bedenin kendine has bir güzelliği vardır. Moda, bu güzelliği ortaya çıkarma sanatıdır.</p>
+                <div class="quote-box">"Moda, bedeninizle savaşmak değil; onunla barışıp en iyi versiyonunu ortaya çıkarmaktır."</div>
+                <h3>1. Armut Vücut Tipi</h3>
+                <p>Kalçaların omuzlardan daha geniş olduğu tiptir. Kayık yaka bluzlar ve A kesim etekler önerilir.</p>
+                <h3>2. Kum Saati Vücut Tipi</h3>
+                <p>Omuz ve kalçanın orantılı, belin ince olduğu tiptir. Bel vurgulu elbiseler sizin için idealdir.</p>
+            </div>
+        </div>
+
+        <div id="view-blog-3" class="page-view">
+            <div class="blog-detail-content">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Trendler">
+                <h1>Geleceğe Bakış: 2025 Haute Couture Trendleri</h1>
+                <p>Moda dünyası hızla değişiyor. 2025 yılına girerken, doğallıkla teknolojinin harmanlandığı bir dönemi işaret ediyor.</p>
+                <div class="quote-box">"Bu sezonun anahtar kelimeleri: Sürdürülebilirlik, Işıltı ve Zamansızlık."</div>
+                <h3>1. Metalik Işıltılar</h3>
+                <p>Gece elbiselerinde gümüş ve altın yansımalar geri dönüyor. İnce işçilikli boncuk işlemeler bu trendin başrolünde.</p>
+                <h3>2. Transparan Katmanlar</h3>
+                <p>Tül ve organze kumaşların üst üste kullanılmasıyla yaratılan derinlik hissi ön planda.</p>
+            </div>
+        </div>
+
+        <div id="view-contact" class="page-view">
+            <div class="contact-wrapper">
+                <h2>HÜDA DOĞAN</h2>
+                <p>Hayalinizdeki tasarımı gerçeğe dönüştürmek için bir kahveye bekleriz.</p>
+                <div style="margin-top:30px;">
+                    <a href="https://instagram.com/hudadoganatelier" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/905393383072" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="contact-footer">&copy; 2025 Tüm Hakları Saklıdır.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(page => { page.style.display = 'none'; });
+            document.getElementById(pageId).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
+
+</body>
+</html>
